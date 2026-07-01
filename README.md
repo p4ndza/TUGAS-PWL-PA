@@ -1,4 +1,30 @@
+# Cara Setup
+## 1. Install NPM
+Payload:
+```
+npm install
+```
 
+## 2. Install Composer
+Payload:
+```
+composer install
+```
+
+# Jalanin File
+## 1. Run Dev
+Payload:
+```
+npm run dev
+```
+
+## 2. PHP
+Payload:
+```
+php artisan serve
+```
+
+---
 # Informasi Databes
 ---
 ### 1. Membuat & Menggunakan Database
@@ -103,4 +129,4 @@ CREATE TABLE Detail_Pesanan (
 > * `ON DELETE SET NULL` (pada `Detail_Pesanan`): Jika produk dihapus dari katalog, ID produk di detail pesanan berubah jadi `NULL`, tapi catatan `harga_satuan` dan `jumlah` tetap utuh. Ini krusial agar total laporan penjualan bulananmu tidak berubah atau *error*.
 > 
 >
----
+----
