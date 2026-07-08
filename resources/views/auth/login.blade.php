@@ -60,7 +60,7 @@
             <div class="space-y-4">
                 <p class="text-xs font-bold uppercase tracking-[0.25em] text-gold">SISTEM INFORMASI PEMASARAN</p>
                 <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-cream leading-tight">
-                    e-Batik <span class="text-gold italic font-normal">Lokal</span>
+                    Batik <span class="text-gold italic font-normal">Lokal</span>
                 </h1>
                 <p class="inline-block bg-indigoCustom/80 text-cream px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase border border-gold/30">
                     Sistem Informasi Pemasaran Batik Nusantara
