@@ -1,0 +1,78 @@
+@extends('layouts.app')
+
+@section('title', 'Data Transaksi')
+
+@section('content')
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="mb-8">
+        <p class="text-xs font-bold uppercase tracking-widest text-soga">Manajemen</p>
+        <h1 class="font-serif text-3xl font-bold text-indigoCustom">Data Transaksi</h1>
+    </div>
+
+    @if(session('success'))
+        <div class="mb-6 p-4 bg-emerald-50 border border-emerald-300 text-emerald-800 rounded-lg text-sm">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="bg-white rounded-2xl shadow-sm border border-gold/20 overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-ink/80">
+                <thead class="bg-indigo-50 border-b border-indigo-100">
+                    <tr>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">No</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Kode</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Pelanggan</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Produk</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Total</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Status</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @forelse($transaksi as $item)
+                    <tr class="hover:bg-indigo-50/30 transition-colors">
+                        <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                        <td class="px-6 py-4 font-semibold text-indigoCustom">{{ $item->kode_transaksi }}</td>
+                        <td class="px-6 py-4">{{ $item->pesanan->user->name ?? 'User Tidak Ditemukan' }}</td>
+                        <td class="px-6 py-4">
+                            <ul class="list-disc list-inside">
+                                @foreach($item->details as $detail)
+                                    <li class="text-xs">{{ $detail->produk->nama_produk ?? 'Produk dihapus' }} (x{{ $detail->jumlah }})</li>
+                                @endforeach
+                            </ul>
+                        </td>
+                        <td class="px-6 py-4 font-bold text-soga">Rp {{ number_format($item->total_bayar, 0, ',', '.') }}</td>
+                        <td class="px-6 py-4">
+                            @if($item->status_pembayaran == 'lunas')
+                                <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-full uppercase">Lunas</span>
+                            @else
+                                <span class="px-3 py-1 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full uppercase">Pending</span>
+                            @endif
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            @if($item->status_pembayaran !== 'lunas')
+                                <form action="{{ route('admin.transaksi.updateStatus', $item->id_transaksi) }}" method="POST" onsubmit="return confirm('Ubah status ke Lunas?')">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="status_pembayaran" value="lunas">
+                                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-[10px] font-bold uppercase transition">
+                                        Konfirmasi Lunas
+                                    </button>
+                                </form>
+                            @else
+                                <span class="text-[10px] text-gray-400 font-bold uppercase">Selesai</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="7" class="px-6 py-10 text-center text-ink/50">Belum ada data transaksi.</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@endsection

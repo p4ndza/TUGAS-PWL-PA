@@ -8,6 +8,7 @@ class Transaksi extends Model
 {
     protected $table = 'transaksi';
     protected $primaryKey = 'id_transaksi';
+    public $timestamps = false;
     
     // Mengizinkan semua kolom (termasuk id_user) diisi secara mass-assignment
     protected $guarded = [];

@@ -95,9 +95,13 @@
                                     <button type="submit" class="text-red-600 hover:text-red-800 font-bold text-xs">Hapus</button>
                                 </form>
                             @else
-                                <button class="w-full bg-indigoCustom hover:bg-soga text-cream py-2 rounded-lg text-xs font-bold transition border border-gold/30">
-                                    + Keranjang
-                                </button>
+                                <form action="{{ route('keranjang.store') }}" method="POST" class="w-full">
+                                    @csrf
+                                    <input type="hidden" name="id_produk" value="{{ $produk->id_produk }}">
+                                    <button type="submit" class="w-full bg-indigoCustom hover:bg-soga text-cream py-2 rounded-lg text-xs font-bold transition border border-gold/30">
+                                        + Keranjang
+                                    </button>
+                                </form>
                             @endif
                         @else
                             <a href="{{ route('login') }}" class="w-full block text-center bg-indigoCustom hover:bg-soga text-cream py-2 rounded-lg text-xs font-bold transition border border-gold/30">

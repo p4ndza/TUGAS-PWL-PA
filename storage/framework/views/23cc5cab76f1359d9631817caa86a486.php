@@ -45,6 +45,7 @@
                 <a href="<?php echo e(route('home')); ?>" class="hover:text-gold transition">Beranda</a>
                 <a href="<?php echo e(route('produk.index')); ?>" class="hover:text-gold transition">Katalog Kain</a>
             </nav>
+            
 
             <div class="flex items-center gap-4 text-sm">
                 <?php if(auth()->guard()->check()): ?>
@@ -53,6 +54,31 @@
                         <a href="<?php echo e(route('admin.dashboard')); ?>" class="bg-soga hover:bg-soga-dark text-cream font-bold px-4 py-2 rounded-lg border border-gold/40 transition text-xs">
                             Dashboard Admin
                         </a>
+                    <?php endif; ?>
+                    
+                    <?php if(auth()->guard()->check()): ?>
+                        <?php if(!auth()->user()->isAdmin()): ?>
+                            
+                            <?php
+                                $cartCount = \App\Models\Keranjang::where('id_user', auth()->id())->count();
+                            ?>
+
+                            
+                            <a href="<?php echo e(route('keranjang.index')); ?>" class="relative flex items-center text-soga font-bold px-4">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                
+                                <?php if($cartCount > 0): ?>
+                                    <span class="absolute -top-1 -right-1 bg-indigoCustom text-cream text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm">
+                                        <?php echo e($cartCount); ?>
+
+                                    </span>
+                                <?php endif; ?>
+                                
+                                <span class="ml-2 hidden md:inline">Keranjang</span>
+                            </a>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <form action="<?php echo e(route('logout')); ?>" method="POST" class="inline">
                         <?php echo csrf_field(); ?>
