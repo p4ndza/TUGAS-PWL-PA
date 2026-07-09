@@ -2,30 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
+use App\Models\DetailTransaksi;
 use Illuminate\Support\Facades\DB;
 
 class LaporanController extends Controller
 {
     public function index()
     {
-        // Analisis Performa Produk (Produk Terlaris & Keuntungan)
-        $dataProduk = DB::table('detail_transaksi')
-            ->join('produk', 'detail_transaksi.id_produk', '=', 'produk.id_produk')
-            ->select(
-                'produk.nama_produk',
-                DB::raw('SUM(detail_transaksi.jumlah) as total_terjual'),
-                DB::raw('SUM(detail_transaksi.subtotal) as total_pendapatan'),
-                // Keuntungan = (Harga Jual - Harga Modal) * Jumlah
-                DB::raw('SUM((detail_transaksi.harga_satuan - produk.harga_modal) * detail_transaksi.jumlah) as total_keuntungan')
-            )
-            ->groupBy('produk.nama_produk')
+        // 1. Hitung Total Pendapatan (Hanya yang statusnya Lunas)
+        $totalPendapatan = Transaksi::where('status_pembayaran', 'lunas')->sum('total_bayar');
+
+        // 2. Ambil Produk Terlaris (Group by id_produk)
+        $produkTerlaris = DetailTransaksi::select('id_produk', DB::raw('SUM(jumlah) as total_terjual'))
+            ->groupBy('id_produk')
             ->orderBy('total_terjual', 'desc')
+            ->with('produk')
+            ->limit(10) // Tampilkan 10 teratas
             ->get();
 
-        // Ringkasan Keuangan Total
-        $totalPendapatan = $dataProduk->sum('total_pendapatan');
-        $totalKeuntungan = $dataProduk->sum('total_keuntungan');
+        // 3. Data Transaksi Lengkap untuk detail
+        $transaksi = Transaksi::with(['pesanan.user', 'details.produk'])->orderBy('id_transaksi', 'desc')->get();
 
-        return view('admin.laporan_produk', compact('dataProduk', 'totalPendapatan', 'totalKeuntungan'));
+        return view('admin.laporan', compact('totalPendapatan', 'produkTerlaris', 'transaksi'));
     }
 }

@@ -104,4 +104,17 @@ class TransaksiController extends Controller
         $transaksi->update(['status_pembayaran' => $request->status_pembayaran]);
         return redirect()->back()->with('success', 'Status berhasil diubah!');
     }
+
+    public function adminPesanan()
+    {
+        if (!auth()->user()->isAdmin()) {
+            return redirect('/')->with('error', 'Anda tidak memiliki akses!');
+        }
+
+        $transaksi = Transaksi::with(['pesanan.user', 'details.produk'])
+                    ->orderBy('id_transaksi', 'desc')
+                    ->get();
+        
+        return view('transaksi.transaksi', compact('transaksi'));
+    }
 }

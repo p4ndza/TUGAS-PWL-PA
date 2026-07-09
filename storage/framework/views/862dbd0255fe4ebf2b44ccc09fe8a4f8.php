@@ -1,8 +1,8 @@
-@extends('layouts.app')
 
-@section('title', 'Laporan Keuangan')
 
-@section('content')
+<?php $__env->startSection('title', 'Laporan Keuangan'); ?>
+
+<?php $__env->startSection('content'); ?>
 <div class="max-w-5xl mx-auto px-4 py-10">
     <div class="flex justify-between items-center mb-8 no-print">
         <h1 class="font-serif text-3xl font-bold text-indigoCustom">Laporan Penjualan</h1>
@@ -15,7 +15,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div class="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
             <p class="text-indigoCustom font-bold text-sm">Total Pendapatan</p>
-            <h2 class="text-3xl font-bold text-soga mt-2">Rp {{ number_format($totalPendapatan, 0, ',', '.') }}</h2>
+            <h2 class="text-3xl font-bold text-soga mt-2">Rp <?php echo e(number_format($totalPendapatan, 0, ',', '.')); ?></h2>
         </div>
     </div>
 
@@ -30,12 +30,12 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($produkTerlaris as $item)
+                <?php $__currentLoopData = $produkTerlaris; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr class="border-b last:border-0">
-                    <td class="py-3">{{ $item->produk->nama_produk ?? 'Produk dihapus' }}</td>
-                    <td class="py-3 text-center font-bold text-soga">{{ $item->total_terjual }} pcs</td>
+                    <td class="py-3"><?php echo e($item->produk->nama_produk ?? 'Produk dihapus'); ?></td>
+                    <td class="py-3 text-center font-bold text-soga"><?php echo e($item->total_terjual); ?> pcs</td>
                 </tr>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
         </table>
     </div>
@@ -47,4 +47,5 @@
         body { background: white; }
     }
 </style>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\TUGAS-PWL-PA\resources\views/admin/laporan.blade.php ENDPATH**/ ?>

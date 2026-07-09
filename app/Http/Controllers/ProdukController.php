@@ -128,13 +128,11 @@ class ProdukController extends Controller
     }
 
     // 7. Hapus Produk (Admin)
-    public function destroy($id)
+   public function destroy($id)
     {
         $produk = Produk::findOrFail($id);
 
-        if ($produk->foto_produk && Storage::disk('public')->exists($produk->foto_produk)) {
-            Storage::disk('public')->delete($produk->foto_produk);
-        }
+        \App\Models\Keranjang::where('id_produk', $id)->delete();
 
         $produk->delete();
 

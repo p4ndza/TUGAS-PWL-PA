@@ -53,11 +53,11 @@
                         </td>
                         <td class="px-6 py-4 text-center">
                             <?php if($item->status_pembayaran !== 'lunas'): ?>
-                                <form action="<?php echo e(route('admin.transaksi.updateStatus', $item->id_transaksi)); ?>" method="POST" onsubmit="return confirm('Ubah status ke Lunas?')">
+                                <form action="<?php echo e(route('admin.transaksi.updateStatus', $item->id_transaksi)); ?>" method="POST" class="form-lunas">
                                     <?php echo csrf_field(); ?>
                                     <?php echo method_field('PATCH'); ?>
                                     <input type="hidden" name="status_pembayaran" value="lunas">
-                                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-[10px] font-bold uppercase transition">
+                                    <button type="button" class="btn-lunas bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1 rounded text-[10px] font-bold uppercase transition">
                                         Konfirmasi Lunas
                                     </button>
                                 </form>
@@ -76,5 +76,29 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.querySelectorAll('.btn-lunas').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault(); // Mencegah form kirim otomatis
+            let form = this.closest('form'); // Mengambil form terdekat
+
+            Swal.fire({
+                title: 'Konfirmasi Lunas?',
+                text: "Status transaksi akan diubah menjadi Lunas.",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#059669', // Warna emerald-600
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Konfirmasi!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Kirim form jika user klik Ya
+                }
+            });
+        });
+    });
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\laragon\www\TUGAS-PWL-PA\resources\views/transaksi/transaksi.blade.php ENDPATH**/ ?>
