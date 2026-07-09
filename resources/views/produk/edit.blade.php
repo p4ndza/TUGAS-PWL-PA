@@ -43,6 +43,14 @@
                     <input type="number" name="harga" id="harga" value="{{ old('harga', $produk->harga) }}" required
                         class="w-full px-4 py-2.5 rounded-lg border border-gold/30 bg-cream-soft/50 text-sm focus:outline-none focus:border-soga">
                 </div>
+
+                <div>
+                    <label for="harga_modal" class="block text-xs font-bold uppercase text-soga mb-1">Harga Modal (per pcs)</label>
+                    <input type="number" name="harga_modal" id="harga_modal" required placeholder="5000"
+                        value="{{ isset($produk) ? $produk->harga_modal : '' }}"
+                        class="w-full px-4 py-2.5 rounded-lg border border-gold/30 bg-cream-soft/50 text-sm focus:outline-none focus:border-soga">
+                </div>
+
                 <div>
                     <label for="stok" class="block text-xs font-bold uppercase text-soga mb-1">Stok Kain</label>
                     <input type="number" name="stok" id="stok" value="{{ old('stok', $produk->stok) }}" required

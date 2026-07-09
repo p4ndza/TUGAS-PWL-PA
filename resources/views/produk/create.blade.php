@@ -16,6 +16,17 @@
     </div>
 
     <div class="bg-white rounded-2xl shadow-md border border-gold/30 p-8">
+        
+        @if ($errors->any())
+            <div class="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded-lg text-xs mb-6">
+                <ul class="list-disc list-inside">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('admin.produk.store') }}" method="POST" enctype="multipart/form-data" class="space-y-5">
             @csrf
 
@@ -34,6 +45,13 @@
             <div>
                 <label for="nama_produk" class="block text-xs font-bold uppercase text-soga mb-1">Nama Kain / Motif</label>
                 <input type="text" name="nama_produk" id="nama_produk" required placeholder="Contoh: Batik Parang Kusumo"
+                    class="w-full px-4 py-2.5 rounded-lg border border-gold/30 bg-cream-soft/50 text-sm focus:outline-none focus:border-soga">
+            </div>
+
+            <div>
+                <label for="harga_modal" class="block text-xs font-bold uppercase text-soga mb-1">Harga Modal (per pcs)</label>
+                <input type="number" name="harga_modal" id="harga_modal" required placeholder="5000"
+                    value="{{ isset($produk) ? $produk->harga_modal : '' }}"
                     class="w-full px-4 py-2.5 rounded-lg border border-gold/30 bg-cream-soft/50 text-sm focus:outline-none focus:border-soga">
             </div>
 
