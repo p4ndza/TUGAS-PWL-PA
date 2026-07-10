@@ -54,7 +54,7 @@
 
             <div>
                 <label class="block text-xs font-bold uppercase text-soga mb-1">Catatan Pesanan (Opsional)</label>
-                <input type="text" name="catatan" value="{{ old('catatan') }}" placeholder="Contoh: Titip di satpam" class="w-full p-2.5 border border-gold/30 rounded-lg text-xs focus:outline-none focus:border-soga bg-cream-soft/30">
+                <input type="text" name="catatan" value="{{ old('catatan') }}" placeholder="Contoh: Ukuran XL" class="w-full p-2.5 border border-gold/30 rounded-lg text-xs focus:outline-none focus:border-soga bg-cream-soft/30">
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                     <p class="text-xs text-ink/70">Silakan transfer sesuai total bayar ke rekening berikut:</p>
                     <p class="text-xs font-bold text-soga mt-1">Bank BCA:</p>
                     <p class="text-sm font-mono font-bold text-indigoCustom">8830-1234-5678</p>
-                    <p class="text-[11px] text-ink/60">a.n Sentra Batik Nusantara</p>
+                    <p class="text-[11px] text-ink/60">a.n Sentra Batik Nusantara 9</p>
                 </div>
 
                 <div class="mb-4">

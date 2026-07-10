@@ -43,7 +43,7 @@
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="<?php echo e(route('home')); ?>" class="hover:text-gold transition">Beranda</a>
-                <a href="<?php echo e(route('produk.index')); ?>" class="hover:text-gold transition">Katalog Kain</a>
+                <a href="<?php echo e(route('produk.index')); ?>" class="hover:text-gold transition">Katalog</a>
                 
                 <?php if(auth()->guard()->check()): ?>
                     <?php if(!auth()->user()->isAdmin()): ?>

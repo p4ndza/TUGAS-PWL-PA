@@ -37,6 +37,10 @@
                 <textarea name="alamat_pengiriman" rows="3" required class="w-full p-3 border border-gold/30 rounded-lg text-sm bg-white" placeholder="Masukkan alamat lengkap..."></textarea>
             </div>
             <div>
+                <label class="block text-xs font-bold uppercase text-soga mb-1">Catatan Pesanan (Opsional)</label>
+                <input type="text" name="catatan" value="{{ old('catatan') }}" placeholder="Contoh: Ukuran XL" class="w-full p-2.5 border border-gold/30 rounded-lg text-xs focus:outline-none focus:border-soga bg-cream-soft/30">
+            </div>
+            <div>
                 <label class="block text-xs font-bold text-indigoCustom uppercase mb-1">Metode Pembayaran</label>
                 <select name="metode_pembayaran" required class="w-full p-3 border border-gold/30 rounded-lg text-sm bg-white">
                     <option value="">Pilih Bank</option>

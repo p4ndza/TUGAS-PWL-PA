@@ -72,8 +72,8 @@
             <div class="p-6 border-t border-gold/10 flex flex-col sm:flex-row justify-between items-center gap-4">
                 <p class="text-lg font-bold text-indigoCustom">Total: Rp <?php echo e(number_format($totalKeseluruhan, 0, ',', '.')); ?></p>
                 <a href="<?php echo e(route('checkout.keranjang')); ?>" class="w-full sm:w-auto bg-soga hover:bg-soga-dark text-cream px-8 py-3 rounded-xl font-bold text-sm shadow-md transition text-center">
-                    Lanjut ke Pembayaran
-                </a>
+                Lanjut ke Pembayaran
+            </a>
             </div>
         <?php endif; ?>
     </div>
