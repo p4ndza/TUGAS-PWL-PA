@@ -7,7 +7,7 @@ use App\Models\Pesanan;
 use App\Models\Transaksi;
 use App\Models\DetailPesanan;
 use App\Models\DetailTransaksi;
-use App\Models\Keranjang; // Ditambahkan untuk fitur keranjang
+use App\Models\Keranjang; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -126,7 +126,6 @@ class TransaksiController extends Controller
                 $total_harga += $item->produk->harga * $item->jumlah;
             }
 
-            // Buat Pesanan
             $pesanan = Pesanan::create([
                 'id_user' => Auth::id(),
                 'tanggal_pesanan' => now(),
@@ -135,18 +134,16 @@ class TransaksiController extends Controller
                 'alamat_pengiriman' => $request->alamat_pengiriman,
             ]);
 
-            // Buat Transaksi
             $transaksi = Transaksi::create([
                 'id_pesanan' => $pesanan->id_pesanan,
                 'kode_transaksi' => 'TRX-' . time() . '-' . Auth::id(),
                 'metode_pembayaran' => $request->metode_pembayaran,
                 'bukti_pembayaran' => $path_bukti,
                 'total_bayar' => $total_harga,
-                'status_pembayaran' => 'pending', // Disamakan dengan default status pending
+                'status_pembayaran' => 'pending', 
                 'tanggal_bayar' => now(),
             ]);
 
-            // Looping untuk memasukkan Detail Pesanan & Transaksi
             foreach ($keranjang as $item) {
                 $subtotal = $item->produk->harga * $item->jumlah;
                 
@@ -171,7 +168,6 @@ class TransaksiController extends Controller
                 $produk->decrement('stok', $item->jumlah);
             }
             
-            // Kosongkan Keranjang setelah sukses
             Keranjang::where('id_user', Auth::id())->delete();
 
             DB::commit();
@@ -191,7 +187,6 @@ class TransaksiController extends Controller
             return redirect('/')->with('error', 'Anda tidak memiliki akses!');
         }
 
-        // PERBAIKAN: Menggunakan orderBy id_transaksi karena tidak ada kolom created_at
         $transaksi = Transaksi::with(['pesanan.user', 'details.produk'])
                     ->orderBy('id_transaksi', 'desc')
                     ->get();

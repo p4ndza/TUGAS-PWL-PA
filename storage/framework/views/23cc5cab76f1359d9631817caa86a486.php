@@ -47,7 +47,7 @@
                 
                 <?php if(auth()->guard()->check()): ?>
                     <?php if(!auth()->user()->isAdmin()): ?>
-                        <a href="<?php echo e(route('pesanan.user')); ?>" class="hover:text-gold transition text-gold font-bold">Informasi Pesanan</a>
+                        <a href="<?php echo e(route('pesanan.user')); ?>" class="hover:text-gold transition">Informasi Pesanan</a>
                     <?php endif; ?>
                 <?php endif; ?>
             </nav>

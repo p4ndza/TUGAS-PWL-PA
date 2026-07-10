@@ -39,7 +39,7 @@
             </div>
             <div>
                 <label class="block text-xs font-bold uppercase text-soga mb-1">Catatan Pesanan (Opsional)</label>
-                <input type="text" name="catatan" value="<?php echo e(old('catatan')); ?>" placeholder="Contoh: Titip di satpam" class="w-full p-2.5 border border-gold/30 rounded-lg text-xs focus:outline-none focus:border-soga bg-cream-soft/30">
+                <input type="text" name="catatan" value="<?php echo e(old('catatan')); ?>" placeholder="Contoh: Ukuran XL" class="w-full p-2.5 border border-gold/30 rounded-lg text-xs focus:outline-none focus:border-soga bg-cream-soft/30">
             </div>
             <div>
                 <label class="block text-xs font-bold text-indigoCustom uppercase mb-1">Metode Pembayaran</label>

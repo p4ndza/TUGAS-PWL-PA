@@ -47,7 +47,7 @@
                 
                 @auth
                     @if(!auth()->user()->isAdmin())
-                        <a href="{{ route('pesanan.user') }}" class="hover:text-gold transition text-gold font-bold">Informasi Pesanan</a>
+                        <a href="{{ route('pesanan.user') }}" class="hover:text-gold transition">Informasi Pesanan</a>
                     @endif
                 @endauth
             </nav>

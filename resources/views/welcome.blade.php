@@ -316,7 +316,6 @@
                 <li><a href="{{ route('produk.index') }}">Katalog</a></li>
                 
                 @auth
-                    <!-- Tampilan jika user SUDAH login -->
                     <li>
                         <span style="font-weight: 600; color: var(--indigo-2); font-size: 0.95rem;">
                             Halo, <strong style="color: var(--soga);">{{ auth()->user()->nama }}</strong>
@@ -338,7 +337,6 @@
                         </form>
                     </li>
                 @else
-                    <!-- Tampilan jika user BELUM login -->
                     <li><a class="btn-login" href="{{ route('login') }}">Masuk</a></li>
                 @endauth
             </ul>

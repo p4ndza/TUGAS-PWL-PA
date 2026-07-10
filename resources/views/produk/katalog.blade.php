@@ -61,6 +61,7 @@
         @forelse($data_produk as $produk)
             <div class="bg-white rounded-2xl border border-gold/20 shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
                 <div>
+                    <a href="{{ route('produk.show', $produk->id_produk) }}">
                     <div class="relative h-48 bg-cream-soft overflow-hidden">
                         @if($produk->foto_produk)
                             <div class="aspect-square overflow-hidden bg-cream-soft">
@@ -76,12 +77,14 @@
                         </span>
                     </div>
                     <div class="p-4">
-                        <a href="{{ route('produk.show', $produk->id_produk) }}">
+                        
                             <h3 class="font-serif font-bold text-lg text-indigoCustom mb-1 hover:text-soga transition">{{ $produk->nama_produk }}</h3>
-                        </a>    
+                           
                         <p class="text-xs text-ink/70 line-clamp-2 mb-3">{{ $produk->deskripsi }}</p>
                         <p class="text-sm font-bold text-soga">Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                        
                     </div>
+                    </a> 
                 </div>
 
                 <div class="p-4 pt-0">

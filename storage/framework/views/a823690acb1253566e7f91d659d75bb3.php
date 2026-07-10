@@ -316,7 +316,6 @@
                 <li><a href="<?php echo e(route('produk.index')); ?>">Katalog</a></li>
                 
                 <?php if(auth()->guard()->check()): ?>
-                    <!-- Tampilan jika user SUDAH login -->
                     <li>
                         <span style="font-weight: 600; color: var(--indigo-2); font-size: 0.95rem;">
                             Halo, <strong style="color: var(--soga);"><?php echo e(auth()->user()->nama); ?></strong>
@@ -338,7 +337,6 @@
                         </form>
                     </li>
                 <?php else: ?>
-                    <!-- Tampilan jika user BELUM login -->
                     <li><a class="btn-login" href="<?php echo e(route('login')); ?>">Masuk</a></li>
                 <?php endif; ?>
             </ul>

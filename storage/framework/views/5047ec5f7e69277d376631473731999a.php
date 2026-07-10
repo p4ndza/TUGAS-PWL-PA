@@ -63,6 +63,7 @@
         <?php $__empty_1 = true; $__currentLoopData = $data_produk; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $produk): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
             <div class="bg-white rounded-2xl border border-gold/20 shadow-md overflow-hidden flex flex-col justify-between hover:shadow-lg transition">
                 <div>
+                    <a href="<?php echo e(route('produk.show', $produk->id_produk)); ?>">
                     <div class="relative h-48 bg-cream-soft overflow-hidden">
                         <?php if($produk->foto_produk): ?>
                             <div class="aspect-square overflow-hidden bg-cream-soft">
@@ -79,12 +80,14 @@
                         </span>
                     </div>
                     <div class="p-4">
-                        <a href="<?php echo e(route('produk.show', $produk->id_produk)); ?>">
+                        
                             <h3 class="font-serif font-bold text-lg text-indigoCustom mb-1 hover:text-soga transition"><?php echo e($produk->nama_produk); ?></h3>
-                        </a>    
+                           
                         <p class="text-xs text-ink/70 line-clamp-2 mb-3"><?php echo e($produk->deskripsi); ?></p>
                         <p class="text-sm font-bold text-soga">Rp <?php echo e(number_format($produk->harga, 0, ',', '.')); ?></p>
+                        
                     </div>
+                    </a> 
                 </div>
 
                 <div class="p-4 pt-0">
