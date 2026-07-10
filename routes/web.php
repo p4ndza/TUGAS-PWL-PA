@@ -33,9 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/{id}', [TransaksiController::class, 'checkoutDirect'])->name('checkout.direct');
     Route::post('/checkout', [TransaksiController::class, 'store'])->name('checkout.store');
 
-    // GRUP KHUSUS ADMIN (Prefix /admin)
-    // --- GANTI BAGIAN GRUP ADMIN DENGAN INI ---
+    // Checkout Keranjang
+    Route::get('/checkout-keranjang', [TransaksiController::class, 'checkoutKeranjang'])->name('checkout.keranjang');
+    Route::post('/checkout-keranjang', [TransaksiController::class, 'storeKeranjang'])->name('checkout.keranjang.store');
 
+    // --- RUTE INFORMASI PESANAN PELANGGAN (Riwayat Pesanan Saya) ---
+    Route::get('/pesanan-saya', [TransaksiController::class, 'pesananUser'])->name('pesanan.user');
+
+    // 4. GRUP KHUSUS ADMIN (Prefix /admin)
     Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
         // Dashboard
         Route::get('/dashboard', [ProdukController::class, 'adminIndex'])->name('dashboard');
@@ -47,14 +52,12 @@ Route::middleware('auth')->group(function () {
         Route::put('/produk/{id}', [ProdukController::class, 'update'])->name('produk.update');
         Route::delete('/produk/{id}', [ProdukController::class, 'destroy'])->name('produk.destroy');
 
-        // Pesanan, Transaksi, & Laporan
+        // Pesanan, Transaksi, & Laporan (Versi Admin)
         Route::get('/pesanan', [TransaksiController::class, 'adminPesanan'])->name('pesanan');
         Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
         
-        // Rute Transaksi (Dipindahkan ke dalam sini agar rapi)
+        // Rute Transaksi Admin
         Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi');
-        
-        // Update Status (Dibuat satu saja agar tidak konflik)
         Route::patch('/transaksi/{id}/update-status', [TransaksiController::class, 'updateStatus'])->name('transaksi.updateStatus');
     });
 });

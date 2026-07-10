@@ -13,7 +13,6 @@ return new class extends Migration {
             $table->string('no_telp', 20);
             $table->text('alamat');
             $table->enum('role', ['admin_umkm', 'pelanggan']);
-            // Tidak ada timestamps agar sesuai dengan Model User Anda
         });
     }
     public function down(): void { Schema::dropIfExists('user'); }

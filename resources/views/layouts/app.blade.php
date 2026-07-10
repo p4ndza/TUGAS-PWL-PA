@@ -44,41 +44,38 @@
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
                 <a href="{{ route('home') }}" class="hover:text-gold transition">Beranda</a>
                 <a href="{{ route('produk.index') }}" class="hover:text-gold transition">Katalog Kain</a>
+                
+                @auth
+                    @if(!auth()->user()->isAdmin())
+                        <a href="{{ route('pesanan.user') }}" class="hover:text-gold transition text-gold font-bold">Informasi Pesanan</a>
+                    @endif
+                @endauth
             </nav>
             
-
             <div class="flex items-center gap-4 text-sm">
                 @auth
                     <span class="text-cream/80 hidden sm:inline">Halo, <strong class="text-gold">{{ auth()->user()->nama }}</strong></span>
+                    
                     @if(auth()->user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}" class="bg-soga hover:bg-soga-dark text-cream font-bold px-4 py-2 rounded-lg border border-gold/40 transition text-xs">
                             Dashboard Admin
                         </a>
+                    @else
+                        @php
+                            $cartCount = \App\Models\Keranjang::where('id_user', auth()->id())->count();
+                        @endphp
+                        <a href="{{ route('keranjang.index') }}" class="relative flex items-center text-soga font-bold px-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            @if($cartCount > 0)
+                                <span class="absolute -top-1 -right-1 bg-indigoCustom text-cream text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm">
+                                    {{ $cartCount }}
+                                </span>
+                            @endif
+                        </a>
                     @endif
                     
-                    @auth
-                        @if(!auth()->user()->isAdmin())
-                            {{-- Hitung jumlah item di keranjang --}}
-                            @php
-                                $cartCount = \App\Models\Keranjang::where('id_user', auth()->id())->count();
-                            @endphp
-
-                            {{-- Gunakan class 'relative' agar badge bisa menempel dengan rapi --}}
-                            <a href="{{ route('keranjang.index') }}" class="relative flex items-center text-soga font-bold px-4">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                
-                                @if($cartCount > 0)
-                                    <span class="absolute -top-1 -right-1 bg-indigoCustom text-cream text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm">
-                                        {{ $cartCount }}
-                                    </span>
-                                @endif
-                                
-                                <span class="ml-2 hidden md:inline">Keranjang</span>
-                            </a>
-                        @endif
-                    @endauth
                     <form action="{{ route('logout') }}" method="POST" class="inline">
                         @csrf
                         <button type="submit" class="text-cream/70 hover:text-red-400 font-semibold transition text-xs">Logout</button>

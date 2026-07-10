@@ -9,7 +9,6 @@
     <a href="<?php echo e(route('admin.pesanan')); ?>" class="flex-1 bg-white p-6 rounded-2xl border border-indigo-100 shadow-sm hover:shadow-indigo-200 transition flex items-center justify-between">
         <div>
             <h3 class="font-bold text-indigoCustom">Kelola Pesanan</h3>
-            <p class="text-xs text-ink/60">Lihat transaksi masuk</p>
         </div>
         <span class="text-indigo-400">➔</span>
     </a>
@@ -17,7 +16,6 @@
     <a href="<?php echo e(route('admin.laporan')); ?>" class="flex-1 bg-white p-6 rounded-2xl border border-indigo-100 shadow-sm hover:shadow-indigo-200 transition flex items-center justify-between">
         <div>
             <h3 class="font-bold text-indigoCustom">Laporan Keuangan</h3>
-            <p class="text-xs text-ink/60">Cek total pendapatan</p>
         </div>
         <span class="text-indigo-400">➔</span>
     </a>
@@ -25,7 +23,6 @@
     <a href="<?php echo e(route('admin.produk.create')); ?>" class="flex-1 bg-white p-6 rounded-2xl border border-indigo-100 shadow-sm hover:shadow-indigo-200 transition flex items-center justify-between">
         <div>
             <h3 class="font-bold text-indigoCustom">Tambah Produk</h3>
-            <p class="text-xs text-ink/60">Input kain baru</p>
         </div>
         <span class="text-indigo-400">➔</span>
     </a>

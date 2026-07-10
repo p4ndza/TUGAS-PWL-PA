@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-        @empty
+        @empty   
             <div class="col-span-full text-center py-16 bg-white rounded-xl border border-gold/20">
                 <p class="font-serif text-lg text-ink/60">Belum ada koleksi batik yang sesuai dengan filter Anda.</p>
             </div>

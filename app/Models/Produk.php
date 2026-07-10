@@ -9,7 +9,6 @@ class Produk extends Model
     protected $table = 'produk';
     protected $primaryKey = 'id_produk';
     
-    // Matikan timestamps bawaan Laravel
     public $timestamps = false;
 
     protected $fillable = [

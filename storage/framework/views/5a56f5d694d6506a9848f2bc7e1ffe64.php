@@ -27,6 +27,7 @@
                         <th class="px-6 py-4 font-bold text-indigoCustom">Produk</th>
                         <th class="px-6 py-4 font-bold text-indigoCustom">Total</th>
                         <th class="px-6 py-4 font-bold text-indigoCustom">Status</th>
+                        <th class="px-6 py-4 font-bold text-indigoCustom">Bukti</th>
                         <th class="px-6 py-4 font-bold text-indigoCustom text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -35,7 +36,7 @@
                     <tr class="hover:bg-indigo-50/30 transition-colors">
                         <td class="px-6 py-4"><?php echo e($loop->iteration); ?></td>
                         <td class="px-6 py-4 font-semibold text-indigoCustom"><?php echo e($item->kode_transaksi); ?></td>
-                        <td class="px-6 py-4"><?php echo e($item->pesanan->user->name ?? 'User Tidak Ditemukan'); ?></td>
+                        <td class="px-6 py-4"><?php echo e($item->pesanan->user->nama ?? 'User Tidak Ditemukan'); ?></td>
                         <td class="px-6 py-4">
                             <ul class="list-disc list-inside">
                                 <?php $__currentLoopData = $item->details; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $detail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -49,6 +50,15 @@
                                 <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-full uppercase">Lunas</span>
                             <?php else: ?>
                                 <span class="px-3 py-1 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full uppercase">Pending</span>
+                            <?php endif; ?>
+                        </td>
+                        <td class="px-6 py-4">
+                            <?php if($item->bukti_pembayaran): ?>
+                                <a href="<?php echo e(asset('storage/' . $item->bukti_pembayaran)); ?>" target="_blank">
+                                    <img src="<?php echo e(asset('storage/' . $item->bukti_pembayaran)); ?>" alt="Bukti" class="w-16 h-16 object-cover rounded border border-gray-200 shadow-sm hover:opacity-75 transition">
+                                </a>
+                            <?php else: ?>
+                                <span class="text-xs text-gray-400 italic">Tidak ada</span>
                             <?php endif; ?>
                         </td>
                         <td class="px-6 py-4 text-center">

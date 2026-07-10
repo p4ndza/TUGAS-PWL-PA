@@ -387,13 +387,13 @@
         <div class="section-head">
             <p class="eyebrow">Fitur Utama</p>
             <h2>Semua yang Dibutuhkan Perajin, dalam Satu Kain Digital</h2>
-            <p>Dirancang bersama pelaku UMKM batik agar proses jualan tetap sederhana, transparan, dan mudah dilacak — dari kain sampai ke pembeli.</p>
+            <p>Dirancang bersama pelaku UMKM batik agar proses jualan tetap sederhana, transparan, dan mudah dilacak  dari kain sampai ke pembeli.</p>
         </div>
         <div class="kain-grid">
             <div class="kain-card">
                 <span class="kain-num">01</span>
                 <h4>Katalog Motif Nusantara</h4>
-                <p>Pajang setiap motif — parang, kawung, mega mendung — lengkap dengan cerita dan ketersediaan stok yang selalu <em>real-time</em>.</p>
+                <p>Pajang setiap motif parang, kawung, mega mendung lengkap dengan cerita dan ketersediaan stok yang selalu <em>real-time</em>.</p>
             </div>
             <div class="kain-card">
                 <span class="kain-num">02</span>

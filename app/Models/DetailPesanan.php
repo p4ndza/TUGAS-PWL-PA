@@ -18,9 +18,21 @@ class DetailPesanan extends Model
     // Pastikan semua kolom yang akan diisi masuk ke sini
     protected $fillable = [
         'id_pesanan', 
-        'id_produk', // WAJIB ADA DI SINI
+        'id_produk', 
         'jumlah', 
         'harga', 
         'harga_satuan'
     ];
+
+    /**
+     * Relasi ke Model Produk
+     * Fungsi ini yang dipanggil oleh TransaksiController saat melakukan:
+     * Transaksi::with(['pesanan.details.produk'])
+     */
+    public function produk()
+    {
+        // Menghubungkan id_produk di tabel detail_pesanan 
+        // dengan id_produk di tabel produk
+        return $this->belongsTo(Produk::class, 'id_produk', 'id_produk');
+    }
 }

@@ -12,7 +12,6 @@ class User extends Authenticatable
     protected $table = 'user';
     protected $primaryKey = 'id_user';
 
-    // ── TAMBAHKAN BARIS INI ──
     public $timestamps = false;
 
     protected $fillable = [
@@ -28,7 +27,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    // Helper method untuk mengecek role
     public function isAdmin(): bool
     {
         return $this->role === 'admin_umkm';

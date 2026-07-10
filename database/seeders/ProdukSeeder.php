@@ -9,11 +9,10 @@ class ProdukSeeder extends Seeder
 {
     public function run(): void
     {
-        // Cari ID kategori berdasarkan namanya
         $kategoriBatik = Kategori::where('nama_kategori', 'Batik Cap')->first();
 
         Produk::create([
-            'id_kategori' => $kategoriBatik->id_kategori, // Otomatis ambil ID
+            'id_kategori' => $kategoriBatik->id_kategori, 
             'nama_produk' => 'Batik Cap Solo',
             'deskripsi'   => 'Batik kualitas premium.',
             'harga'       => 150000,
@@ -24,7 +23,7 @@ class ProdukSeeder extends Seeder
 
         $kategoriBatik = Kategori::where('nama_kategori', 'Batik Tulis')->first();
         Produk::create([
-            'id_kategori' => $kategoriBatik->id_kategori, // Otomatis ambil ID
+            'id_kategori' => $kategoriBatik->id_kategori, 
             'nama_produk' => 'Batik Tulis',
             'deskripsi'   => 'Batik kualitas Pekalongan.',
             'harga'       => 120000,

@@ -114,7 +114,7 @@
                     </div>
                 </div>
             </div>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>   
             <div class="col-span-full text-center py-16 bg-white rounded-xl border border-gold/20">
                 <p class="font-serif text-lg text-ink/60">Belum ada koleksi batik yang sesuai dengan filter Anda.</p>
             </div>

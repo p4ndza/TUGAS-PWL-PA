@@ -10,7 +10,6 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // Membuat Akun Admin UMKM
         User::create([
             'nama' => 'Admin Batik',
             'email' => 'admin@gmail.com',
@@ -20,14 +19,13 @@ class UserSeeder extends Seeder
             'role' => 'admin_umkm', 
         ]);
 
-        // Kita juga bisa sekalian buat 1 contoh akun pelanggan buat testing nanti
         User::create([
-            'nama' => 'Budi',
-            'email' => 'budi@gmail.com',
-            'password' => Hash::make('budi123'),
+            'nama' => 'Josu',
+            'email' => 'josu@gmail.com',
+            'password' => Hash::make('user123'),
             'no_telp' => '081244446666',
             'alamat' => 'Jl. Mawar No. 4, Desa Sejahtera',
-            'role' => 'pelanggan', // Set role sebagai pelanggan
+            'role' => 'pelanggan', 
         ]);
     }
 }

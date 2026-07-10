@@ -45,7 +45,7 @@
             </div>
 
             @auth
-                <form action="{{ route('checkout.direct', $produk->id_produk) }}" method="POST" class="pt-4 border-t border-gold/20">
+                <form action="{{ route('checkout.direct', $produk->id_produk) }}" method="GET" class="pt-4 border-t border-gold/20">
                     @csrf
                     <div class="flex items-center gap-4 mb-4">
                         <label class="text-xs font-bold uppercase text-soga">Jumlah Beli:</label>

@@ -166,7 +166,7 @@
                         <a href="<?php echo e(route('register')); ?>" class="font-bold text-soga hover:underline">Daftar Akun Baru</a>
                     </p>
                     <p class="pt-2 border-t border-gold/20 text-[10px]">
-                        Butuh bantuan? <a href="#" class="text-soga font-bold">Hubungi Admin</a> &copy; <?php echo e(date('Y')); ?> Batik Kelompok 9
+                        Butuh bantuan? <a href="https://wa.me/6281153964587" class="text-soga font-bold">Hubungi Admin</a> &copy; <?php echo e(date('Y')); ?> Batik Kelompok 9
                     </p>
                 </div>
 
